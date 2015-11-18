@@ -1,0 +1,187 @@
+//
+// Toggle
+// --------------------------------------------------
+
+
+// Variables
+// -------------------------
+
+$toggle-color: #337ab7;
+
+
+// Mixins
+// -------------------------
+
+@mixin user-select($select) {
+  -webkit-user-select: $select;
+     -moz-user-select: $select;
+      -ms-user-select: $select; // IE10+
+          user-select: $select;
+}
+
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow: $shadow; // iOS <4.3 & Android <4.1
+          box-shadow: $shadow;
+}
+
+@mixin backface-visibility($visibility){
+  -webkit-backface-visibility: $visibility;
+     -moz-backface-visibility: $visibility;
+          backface-visibility: $visibility;
+}
+
+@mixin rotateY($degrees) {
+  -webkit-transform: rotateY($degrees);
+      -ms-transform: rotateY($degrees); // IE9 only
+       -o-transform: rotateY($degrees);
+          transform: rotateY($degrees);
+}
+
+@mixin transition($transition...) {
+  -webkit-transition: $transition;
+       -o-transition: $transition;
+          transition: $transition;
+}
+
+
+// Toggle
+// -------------------------
+
+.toggle {
+  position: absolute;
+  visibility: hidden;
+  + label {
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 0;
+    @include user-select(none);
+  }
+}
+
+// Round
+
+.toggle-round {
+  + label {
+    background-color: #ddd;
+    width: 68px;
+    height: 34px;
+    border-radius: 34px;
+    &:before, &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      bottom: 1px;
+    }
+    &:before {
+      background-color: #f1f1f1;
+      border-radius: 34px;
+      right: 1px;
+      @include transition(background 0.4s);
+    }
+    &:after {
+      background-color: #fff;
+      border-radius: 32px;
+      width: 32px;
+      @include box-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+      @include transition(margin 0.4s);
+    }
+  }
+  &:checked {
+    + label {
+      &:before {
+        background-color: $toggle-color;
+      }
+      &:after {
+        margin-left: 34px;
+      }
+    }
+  }
+}
+
+// Line
+
+.toggle-line {
+  + label {
+    background-color: #ddd;
+    width: 68px;
+    height: 34px;
+    border-radius: 34px;
+    @include transition(background 0.4s);
+    &:before, &:after {
+      position: absolute;
+      content: "";
+    }
+    &:before {
+      background-color: #fff;
+      top: 2px;
+      right: 2px;
+      bottom: 2px;
+      left: 2px;
+      border-radius: 34px;
+      @include transition(background 0.4s);
+    }
+    &:after {
+      background-color: #ddd;
+      width: 26px;
+      top: 4px;
+      bottom: 4px;
+      left: 4px;
+      border-radius: 26px;
+      @include transition(margin 0.4s, background 0.4s);
+    }
+  }
+  &:checked {
+    + label {
+      background-color: $toggle-color;
+      &:after {
+        margin-left: 34px;
+        background-color: $toggle-color;
+      }
+    }
+  }
+}
+
+// Rotate
+
+.toggle-rotate {
+  + label {
+    width: 68px;
+    height: 34px;
+    &:before, &:after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      color: #fff;
+      font-size: 20px;
+      text-align: center;
+      line-height: 34px;
+    }
+    &:before {
+      background-color: #ddd;
+      content: attr(data-off);
+      @include transition(transform 0.5s);
+      @include backface-visibility(hidden);
+    }
+    &:after {
+      background-color: $toggle-color;
+      content: attr(data-on);
+      @include transition(transform 0.5s);
+      @include rotateY(180deg);
+      @include backface-visibility(hidden);
+    }
+  }
+  &:checked {
+    + label {
+      &:before {
+        @include rotateY(180deg);
+      }
+      &:after {
+        @include rotateY(0);
+      }
+    }
+  }
+}

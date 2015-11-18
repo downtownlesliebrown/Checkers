@@ -1,0 +1,42 @@
+{
+  "name": "toggle",
+  "version": "0.0.2",
+  "authors": [
+    "Bruno Batista <bruno@atomtech.com.br>"
+  ],
+  "description": "Simple, ready to use, lightweight CSS toggle.",
+  "main": "./dist/toggle.scss",
+  "keywords": [
+    "toggle",
+    "css",
+    "simple",
+    "lightweight"
+  ],
+  "license": "MIT",
+  "homepage": "http://brunobatista.github.io/toggle/",
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "grunt",
+    "node_modules",
+    "src",
+    "test"
+  ],
+  "devDependencies": {
+    "bootstrap-sass-official": "~3.3.3",
+    "modernizr": "~2.8.3",
+    "font-awesome": "~4.3.0",
+    "toggle": "~0.0.1",
+    "github-fork-ribbon-css": "~0.1.1"
+  },
+  "_release": "0.0.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.2",
+    "commit": "7c83957cad143539e31ddcff2396998ef0adb47a"
+  },
+  "_source": "git://github.com/brunowego/toggle.git",
+  "_target": "~0.0.2",
+  "_originalSource": "toggle",
+  "_direct": true
+}
